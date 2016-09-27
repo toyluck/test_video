@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    signingConfigs {
+        debug {
+            storeFile file("$rootDir/ZhouFuAnndroidSecretKey")
+            storePassword "zhoufusz"
+            keyAlias '深圳州富网络科技有限公司'
+            keyPassword "zhoufusz"
+        }
+
+        release {
+            storeFile file("$rootDir/ZhouFuAnndroidSecretKey")
+            storePassword "zhoufusz"
+            keyAlias '深圳州富网络科技有限公司'
+            keyPassword "zhoufusz"
+        }
+    }
+    defaultConfig {
+        applicationId "anybody.test.test_video"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile project(':Qupaisdk-release')
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    compile 'com.google.code.findbugs:jsr305:3.0.0'
+
+    compile 'com.android.support:support-v13:24.2.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.4'
+    compile 'com.google.dagger:dagger-compiler:2.0.1'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+}
